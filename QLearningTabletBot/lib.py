@@ -16,13 +16,13 @@ class SensorMotor:
 
 SPEED = 360
 
-def go_forward(robot):
-    robot.left.run(SPEED)
-    robot.right.run(SPEED)
+# def go_forward(robot):
+#     robot.left.run(SPEED)
+#     robot.right.run(SPEED)
 
-def spin_left(robot):
-    robot.left.run(SPEED)
-    robot.right.run(-SPEED)
+# def spin_left(robot):
+#     robot.left.run(SPEED)
+#     robot.right.run(-SPEED)
 
 class QParameters:
     def __init__(self):

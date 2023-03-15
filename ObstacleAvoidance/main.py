@@ -21,7 +21,8 @@ ev3 = EV3Brick()
 # Write your program here.
 ev3.speaker.beep()
 
-SERVER_IP = "172.17.3.91"
+# 172.17.3.91 Previous IP 
+SERVER_IP = "172.17.2.127"
 PORT = 8888
 
 def send_message(message):

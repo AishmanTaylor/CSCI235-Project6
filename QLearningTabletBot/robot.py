@@ -7,8 +7,8 @@ class SensorMotor:
         self.ev3 = ev3
         self.left = Motor(Port.A)
         self.right = Motor(Port.D)
-        self.bump_left = TouchSensor(Port.S1)
-        self.bump_right = TouchSensor(Port.S4)
+        # self.bump_left = TouchSensor(Port.S1)
+        # self.bump_right = TouchSensor(Port.S4)
         self.sonar = UltrasonicSensor(Port.S2)
         self.loops = 0
 

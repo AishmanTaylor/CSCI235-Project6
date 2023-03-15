@@ -65,11 +65,11 @@ def find_state(bot):
     msg = send_message("classify")
     if msg == "CameraClose":
         return CAMERA_CLOSE
-    elif msg == "SonarClose":
-        return SONAR_CLOSE
     elif 0 <= distance <= 200:
+        return SONAR_CLOSE
+    elif msg == "Shelter":
         return SHELTER
-    elif msg == "clear":
+    elif msg == "Clear":
         return CLEAR
     ev3.screen.clear()
     ev3.screen.draw_text(0, 0, msg)
