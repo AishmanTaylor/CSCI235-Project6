@@ -17,9 +17,7 @@ class SensorMotor:
         self.right.run(0)
 
     def values(self):
-        return ["BL:" + str(self.bump_left.pressed()),
-            "BR:" + str(self.bump_right.pressed()),
-            "SN:" + str(self.sonar.distance())]
+        return ["SN:" + str(self.sonar.distance())]
 
     def show(self, state, action, reward, total_reward):
         self.ev3.screen.clear()

@@ -8,7 +8,7 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile
 
 import socket
-import robot, lib
+import QRobot, lib
 
 # This program requires LEGO EV3 MicroPython v2.0 or higher.
 # Click "Open user guide" on the EV3 extension tab for more information.
@@ -21,7 +21,7 @@ ev3 = EV3Brick()
 # Write your program here.
 ev3.speaker.beep()
 
-SERVER_IP = "172.17.3.91"
+SERVER_IP = "172.17.2.127"
 PORT = 8888
 
 def send_message(message):
@@ -37,8 +37,8 @@ def send_message(message):
         sock.close()
     return reply
 
-robot = lib.SensorMotor(ev3)
-send_message("knn 3 avoid")
+robot = QRobot.SensorMotor(ev3)
+send_message("knn 3 Qlearning")
 
 # while True:
 #     msg = send_message("classify")
@@ -71,6 +71,8 @@ def find_state(bot):
         return SHELTER
     elif msg == "Clear":
         return CLEAR
+    else:
+        return CLEAR
     ev3.screen.clear()
     ev3.screen.draw_text(0, 0, msg)
     wait(100)
@@ -94,6 +96,8 @@ def reward(bot, state, action):
         return -5
     elif state == SHELTER:
         return 5
+    elif state == CLEAR:
+        return 0
     elif action == 0:
         return 1
     else:
@@ -101,7 +105,7 @@ def reward(bot, state, action):
 
 params = lib.QParameters()
 params.pause_ms = 500
-params.actions = [robot.go_forward, robot.go_left, robot.go_right, robot.go_back]
+params.actions = [QRobot.go_forward, QRobot.go_left, QRobot.go_right, QRobot.go_back]
 params.num_states = 4
 params.state_func = find_state
 params.reward_func = reward
@@ -110,6 +114,4 @@ params.discount = 0.5
 params.rate_constant = 10
 params.max_steps = 200
 
-ev3 = EV3Brick()
-
-lib.run_q(robot.SensorMotor(ev3), params)
+lib.run_q(QRobot.SensorMotor(ev3), params)
